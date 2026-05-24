@@ -1,0 +1,19 @@
+# Unity
+/Library/
+/Temp/
+/obj/
+/Build/
+/Builds/
+/Logs/
+/UserSettings/
+
+# Rider
+.idea/
+*.userprefs
+
+# VS
+.vs/
+
+# Other
+*.DS_Store
+*.tmp
