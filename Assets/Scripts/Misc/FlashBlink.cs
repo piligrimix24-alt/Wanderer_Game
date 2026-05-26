@@ -23,7 +23,6 @@ public class FlashBlink : MonoBehaviour
         {
             player.OnPlayerTakeHit += DamagebleObject_OnPlayerTakeHit;
         }
-
     }
     private void Update()
     {
@@ -48,6 +47,10 @@ public class FlashBlink : MonoBehaviour
     {
         SetDefaultMaterial();
         _isBlinking = false;
+    }
+    public void StartBlinking()
+    {
+        _isBlinking = true;
     }
     //=================================================================================================================
     private void SetDefaultMaterial()

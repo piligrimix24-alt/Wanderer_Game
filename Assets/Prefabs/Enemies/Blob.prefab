@@ -222,6 +222,10 @@ MonoBehaviour:
   enemyAI: {fileID: 2844311259883966190}
   enemyEntity: {fileID: 6540958871319401754}
   enemyShadow: {fileID: 3529732438195787128}
+  isSlime: 0
+  isBlob: 1
+  blobAttack: {fileID: 8300000, guid: 7f99c31d6186885449c945267a42bede, type: 3}
+  slimeAttack: {fileID: 0}
 --- !u!1 &5510728143852048941
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,8 +436,8 @@ MonoBehaviour:
   roamingDistanceMin: 3
   roamingTimeMax: 2
   chasingDistance: 4
-  chasingSpeedMultiplier: 2
-  attackingDistance: 2
+  chasingSpeedMultiplier: 4
+  attackingDistance: 1
   attackTimeout: 2
 --- !u!114 &6540958871319401754
 MonoBehaviour:

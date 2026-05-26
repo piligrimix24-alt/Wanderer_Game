@@ -743,7 +743,7 @@ TextureImporter:
         width: 7
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -752,6 +752,138 @@ TextureImporter:
       bones: []
       spriteID: fae9132b32905a44d8a444e589e04ab4
       internalID: 1880911985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coins_chests_etc_2
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7f93f4205a07e548bc82f6f3da00246
+      internalID: 1852450828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coins_chests_etc_3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 649f94327b61aa941b01df35779e9b4b
+      internalID: -1192171853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coins_chests_etc_4
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d3438210046da64f8ba0b20885e8a02
+      internalID: -2068250776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coins_chests_etc_5
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32881dda3e707cc428dad2016893fa8e
+      internalID: 1968298072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coins_chests_etc_6
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97440fa836634954eb957c85429873f4
+      internalID: 1115370708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Coins_chests_etc_7
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e761e5ae60b75d4fbcd4629b1a511e1
+      internalID: -399545203
       vertices: []
       indices: 
       edges: []
@@ -774,6 +906,12 @@ TextureImporter:
       Coin_LightGrey: 570010025
       Coins_chests_etc_0: 475130592
       Coins_chests_etc_1: 1880911985
+      Coins_chests_etc_2: 1852450828
+      Coins_chests_etc_3: -1192171853
+      Coins_chests_etc_4: -2068250776
+      Coins_chests_etc_5: 1968298072
+      Coins_chests_etc_6: 1115370708
+      Coins_chests_etc_7: -399545203
       chest_blue_1: 5241265420835876155
       chest_blue_2: -705864467
       chest_blue_3: -99878603

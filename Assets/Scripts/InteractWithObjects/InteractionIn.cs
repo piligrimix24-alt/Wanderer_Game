@@ -11,6 +11,9 @@ public class InteractionIn : MonoBehaviour
     private float _initialTransparencyAmount;
     [Header("Statue")]
     [SerializeField] public bool isStatue;
+    [SerializeField] private Canvas inventoryCanvas;
+    [SerializeField] private AudioClip edningPre;
+    [SerializeField] private AudioClip edning;
     [Header("Lock")]
     [SerializeField] public bool isLock;
 
@@ -18,6 +21,9 @@ public class InteractionIn : MonoBehaviour
 
     private const string CHEST_OPEN = "ChestOpen";
     private const string LOCK_OPEN = "LockOpen";
+
+    private float _lastInteractionTime = -10f;
+    private float _interactionCooldown = 0.5f;
 
     //private SpriteRenderer _spriteRenderer;
     //==============================================================
@@ -29,6 +35,7 @@ public class InteractionIn : MonoBehaviour
     private void Start()
     {
         GameInput.Instance.OnPlayerInteractionE += GameInput_OnPlayerInteractionE;
+        EndCutscene();
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -52,6 +59,15 @@ public class InteractionIn : MonoBehaviour
         Destroy(gameObject);
         NavMesgSurfaceManagment.Instance.RebakeNavMeshSurface();
     }
+    public void OnPlayerTouchAnimationEnd()
+    {
+        GameInput.Instance.EnableMovement();
+        SceneTransition.SwitchToScene("Menu");
+    }
+    public void PlayEndingSound()
+    {
+        AudioManager.Instance.PlaySFX(edning, 0.5f);
+    }
     //==============================================================
     private void GameInput_OnPlayerInteractionE(object sender, System.EventArgs e)
     {
@@ -62,6 +78,9 @@ public class InteractionIn : MonoBehaviour
     }
     private void StartInteraction()
     {
+        if (Time.time < _lastInteractionTime + _interactionCooldown) return;
+        _lastInteractionTime = Time.time;
+
         Debug.Log("InteractionIn performed");
         outlineObject.SetActive(false);
         if (isChest)
@@ -72,6 +91,19 @@ public class InteractionIn : MonoBehaviour
         {
             HandleLock();
         }
+        if (isStatue)
+        {
+            StartEndingCutscene();
+        }
+    }
+    private void StartEndingCutscene()
+    {
+        //GameDisplay.Instance.DisableInventoryDisplay();
+        AudioManager.Instance.PlaySFX(edningPre, 0.3f);
+        StartCutscene();
+        GameInput.Instance.DisableMovement();
+        if (_animator != null)
+            _animator.SetTrigger("PlayerTouch");
     }
     private void HandleChest()
     {
@@ -102,6 +134,17 @@ public class InteractionIn : MonoBehaviour
         {
             Debug.Log("Need a key to open this lock!");
         }
+    }
+    private void StartCutscene()
+    {
+        if (inventoryCanvas != null)
+            inventoryCanvas.enabled = false;
+    }
+
+    private void EndCutscene()
+    {
+        if (inventoryCanvas != null)
+            inventoryCanvas.enabled = true;
     }
 }
 

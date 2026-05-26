@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class GameDisplay : MonoBehaviour
 {
+    public static GameDisplay Instance { get; private set; }
     private int _health;
     private int _maxHealth;
     private int _currentKeys;
@@ -21,7 +22,10 @@ public class GameDisplay : MonoBehaviour
 
     private const string E = "E";
     private const string MOUSE = "Mouse";
-
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Update()
     {
         _maxHealth = player.GetPlayerMaxHealth();
@@ -33,7 +37,21 @@ public class GameDisplay : MonoBehaviour
         VisualiseCurrentKeys();
         VisualiseHints();
     }
-    //==========================
+    //===================================
+    public void DisableInventoryDisplay()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i].enabled = false;
+        }
+        for (int j = 0; j < keys.Length; j++)
+        {
+            keys[j].enabled = false;
+        }
+        animator.SetBool(E, false);
+        animator.SetBool(MOUSE, false);
+    }
+    //===================================
     private void VisualiseCurrentHealth()
     {
         for (int i = 0; i < hearts.Length; i++)
@@ -55,7 +73,6 @@ public class GameDisplay : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
-
     }
     private void VisualiseCurrentKeys()
     {

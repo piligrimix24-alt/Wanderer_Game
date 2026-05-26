@@ -222,6 +222,10 @@ MonoBehaviour:
   enemyAI: {fileID: 1754221015285695909}
   enemyEntity: {fileID: 8713986397128800248}
   enemyShadow: {fileID: 1557261397501901310}
+  isSlime: 1
+  isBlob: 0
+  blobAttack: {fileID: 0}
+  slimeAttack: {fileID: 8300000, guid: 7b5520b41e5d3354790b9f9270c5de21, type: 3}
 --- !u!1 &5646341367736821628
 GameObject:
   m_ObjectHideFlags: 0

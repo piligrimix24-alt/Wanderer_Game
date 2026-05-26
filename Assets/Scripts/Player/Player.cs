@@ -5,12 +5,15 @@ using UnityEngine;
 [SelectionBase]
 public class Player : MonoBehaviour
 {
+    [Header("Player Settings")]
     public static Player Instance { get; private set; }
     private Rigidbody2D _rb;
     private KnockBack _knockBack;
+    private PlayerAudio _playerAudio;
 
     public event EventHandler OnPlayerTakeHit;
     public event EventHandler OnPlayerDeath;
+    public event EventHandler OnPlayerRespawn;
 
     [SerializeField] private float movingSpeed;
     private readonly float _baseSpeed = 5f;
@@ -18,11 +21,14 @@ public class Player : MonoBehaviour
     //private readonly float _dashSpeed = 15f;
     private readonly float _minSpeed = 0.1f;
     private int _directionRunning = 1;
-
+    [Header("Player Health")]
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int _currentHealth;
     private float _damageRecoveryTime = 1f;
-
+    [SerializeField] private bool canRespawn;
+    private Vector3 respawnPosition;
+    private int _keysOnDeath;
+    [Header("Player States")]
     public bool isEPressed = false;
     public bool isInteractingInOut = false;
     public bool isCloseToInteract = false;
@@ -37,6 +43,19 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int _keysCount = 0;
     private float _attackAnimationDuration = 0.1f;
+
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip healSound;
+    [SerializeField] private AudioClip keyPickupSound;
+    [SerializeField] private AudioClip keyUseSound;
+    [SerializeField] private AudioClip checkpointSound;
+
+    private float _lastHealTime = -10f;
+    private float _lastKeyPickupTime = -10f;
+    private float _healCooldown = 1.5f;
+    private float _keyPickupCooldown = 1.5f;
+    private float _lastDeathTime = -10f;
+    private float _deathCooldown = 2f;
 
     Vector2 inputVector;
     //=================================================================================================================
@@ -55,6 +74,7 @@ public class Player : MonoBehaviour
         GameInput.Instance.OnPlayerInteractionEStopped += GameInput_OnPlayerInteractionEStopped;
         movingSpeed = _baseSpeed;
         _currentHealth = maxHealth;
+        respawnPosition = transform.position;
     }
     private void Update()
     {
@@ -83,6 +103,7 @@ public class Player : MonoBehaviour
         return playerScreenPosition;
     }
     public int DirectionRunning() => _directionRunning;
+    public bool isMoving() => _directionRunning != 0;
     public bool IsRunning() => _isRunning;
     public bool IsShiftRunning() => _isShiftRunning;
     public bool IsAttacking() => _isAttacking;
@@ -105,23 +126,47 @@ public class Player : MonoBehaviour
     }
     public void RecoverHP()
     {
+        if (Time.time < _lastHealTime + _healCooldown) return;
         if (_currentHealth != maxHealth)
         {
+            _lastHealTime = Time.time;
             _currentHealth += 1;
+            AudioManager.Instance.PlaySFX(healSound, 0.1f);
         }
     }
     public void AddKey()
     {
+        if (Time.time < _lastKeyPickupTime + _keyPickupCooldown) return;
+        _lastKeyPickupTime = Time.time;
         _keysCount++;
         Debug.Log($"Key collected! Total keys: {_keysCount}");
+        AudioManager.Instance.PlaySFX(keyPickupSound);
     }
     public void UseKey()
     {
-        if (_keysCount > 0) _keysCount--;
-        Debug.Log($"Key used! Total keys: {_keysCount}");
+        if (_keysCount > 0)
+        {
+            _keysCount--;
+            Debug.Log($"Key used! Total keys: {_keysCount}");
+            AudioManager.Instance.PlaySFX(keyUseSound);
+        }
     }
     public bool HasKey() => _keysCount > 0;
     public int GetPlayerKeys() => _keysCount;
+    public void ResetAttack()
+    {
+        _isAttacking = false;
+        allowedToMove = true;
+    }
+    public void UpdateRespawnPoint(Vector3 checkpointPosition)
+    {
+        respawnPosition = checkpointPosition;
+        AudioManager.Instance.PlaySFX(checkpointSound, 0.5f);
+    }
+    public void DisablePLayerMovement()
+    {
+        allowedToMove = false;
+    }
     //=================================================================================================================
     private void HandleStateDuringInteraction()
     {
@@ -145,24 +190,38 @@ public class Player : MonoBehaviour
     }
     private void DetectDeath()
     {
+        if (Time.time < _lastDeathTime + _deathCooldown) return;
         if (_currentHealth == 0 && _isAlive)
         {
+            _lastDeathTime = Time.time;
             _isAlive = false;
             _knockBack.StopKnockBackMovement();
             OnPlayerDeath?.Invoke(this, EventArgs.Empty);
             GameInput.Instance.DisableMovement();
+            if (canRespawn)
+            {
+                StartCoroutine(Respawn());
+                _canTakeDamage = false;
+            }
         }
     }
-    public void ResetAttack()
+    private IEnumerator Respawn()
     {
-        _isAttacking = false;
-        allowedToMove = true;
+        yield return new WaitForSeconds(0.8f);
+        transform.position = respawnPosition;
+        OnPlayerRespawn?.Invoke(this, EventArgs.Empty);
+        yield return new WaitForSeconds(0.5f);
+        _currentHealth = maxHealth / 2;
+        _isAlive = true;
+        GameInput.Instance.EnableMovement();
+        yield return new WaitForSeconds(1.5f);
+        _canTakeDamage = true;
     }
     private void HandleMovement()
     {
         _rb.MovePosition(_rb.position + inputVector * (movingSpeed * Time.fixedDeltaTime));
 
-        if (Mathf.Abs(inputVector.x) > _minSpeed || Mathf.Abs(inputVector.x) > _minSpeed)
+        if (Mathf.Abs(inputVector.x) > _minSpeed || Mathf.Abs(inputVector.y) > _minSpeed)
         {
             _isRunning = true;
             if (inputVector.x > 0)
@@ -173,6 +232,7 @@ public class Player : MonoBehaviour
             {
                 _directionRunning = -1;
             }
+
         }
         else
         {

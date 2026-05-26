@@ -7,6 +7,7 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance { get; private set; }
 
     private PlayerInputActions _playerInputActions;
+    private bool _isDisposed = false;
 
     public event EventHandler OnPlayerAttack;
     public event EventHandler OnPlayerShift;
@@ -26,7 +27,35 @@ public class GameInput : MonoBehaviour
         _playerInputActions.Player.Shift.canceled += Shift_canceled;
         _playerInputActions.Player.InteractionE.started += InteractionE_started;
         _playerInputActions.Player.InteractionE.canceled += InteractionE_canceled;
-        //_playerInputActions.Player.Jump.performed += Jump_performed;
+    }
+    private void OnDestroy()
+    {
+        Dispose();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Dispose();
+    }
+
+    private void Dispose()
+    {
+        if (_isDisposed) return;
+
+        if (_playerInputActions != null)
+        {
+            _playerInputActions.Combat.Attack.started -= PlayerAttack_started;
+            _playerInputActions.Player.Shift.started -= Shift_started;
+            _playerInputActions.Player.Shift.canceled -= Shift_canceled;
+            _playerInputActions.Player.InteractionE.started -= InteractionE_started;
+            _playerInputActions.Player.InteractionE.canceled -= InteractionE_canceled;
+
+            _playerInputActions.Disable();
+            _playerInputActions.Dispose();
+            _playerInputActions = null;
+        }
+
+        _isDisposed = true;
     }
     //=================================================================================================================
     public Vector2 GetMovementVector()
@@ -42,6 +71,10 @@ public class GameInput : MonoBehaviour
     public void DisableMovement()
     {
         _playerInputActions.Disable();
+    }
+    public void EnableMovement()
+    {
+        _playerInputActions.Enable();
     }
     //=================================================================================================================
     private void Shift_canceled(InputAction.CallbackContext obj)

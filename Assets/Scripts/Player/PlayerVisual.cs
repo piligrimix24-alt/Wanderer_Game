@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
@@ -11,11 +12,16 @@ public class PlayerVisual : MonoBehaviour
     private Transform _transform;
     private FlashBlink _flashBlink;
     private Vector3 _positionBeforeInteraction;
+    public AudioClip footsteps;
+    public AudioClip whoosh;
+    public AudioClip lockerOpen;
+    public AudioClip lockerClose;
+    private bool _hasPlayedHidingSound;
+    private bool _hasPlayedAttackSound;
 
     private const string IS_RUNNING = "IsRunning";
     private const string IS_SHIFT_RUNNING = "IsShiftRunning";
     private const string IS_ATTACKING = "IsAttacking";
-    //private const string IS_HURT = "IsHurt";
     private const string IS_DEAD = "IsDead";
     private const string IS_HIDING = "IsHiding";
     //=================================================================================================================
@@ -28,8 +34,11 @@ public class PlayerVisual : MonoBehaviour
     }
     private void Start()
     {
-        //Player.Instance.OnPlayerTakeHit += Player_OnPlayerTakeHit;
         Player.Instance.OnPlayerDeath += Player_OnPlayerDeath;
+        Player.Instance.OnPlayerRespawn += Player_OnPlayerRespawn;
+        StartCoroutine(PlaySteps());
+        StartCoroutine(PlayRunning());
+        StartCoroutine(PlayAttacking());
     }
     private void Update()
     {
@@ -40,20 +49,42 @@ public class PlayerVisual : MonoBehaviour
         {
             AdjustPlayerFacingDirection();
         }
+
         if (!Player.Instance.IsVisibleForEnemy())
         {
             _animator.SetBool(IS_HIDING, true);
             HidingDarkness.SetActive(true);
+            if (!_hasPlayedHidingSound)
+            {
+                _hasPlayedHidingSound = true;
+                AudioManager.Instance.PlaySFX(lockerOpen);
+            }
         }
         else
         {
             _animator.SetBool(IS_HIDING, false);
             HidingDarkness.SetActive(false);
+            if (_hasPlayedHidingSound)
+            {
+                _hasPlayedHidingSound = false;
+                AudioManager.Instance.PlaySFX(lockerClose);
+            }
+        }
+
+        if (Player.Instance.IsAttacking() && !_hasPlayedAttackSound)
+        {
+            _hasPlayedAttackSound = true;
+            AudioManager.Instance.PlaySFX(whoosh);
+        }
+        else if (!Player.Instance.IsAttacking())
+        {
+            _hasPlayedAttackSound = false;
         }
     }
     private void OnDestroy()
     {
         Player.Instance.OnPlayerDeath -= Player_OnPlayerDeath;
+        Player.Instance.OnPlayerRespawn -= Player_OnPlayerRespawn;
     }
     //=================================================================================================================
     private void AdjustPlayerFacingDirection()
@@ -73,14 +104,41 @@ public class PlayerVisual : MonoBehaviour
     {
         _animator.SetTrigger(IS_DEAD);
         _flashBlink.StopBlinking();
+        //HidingDarkness.SetActive(true);
     }
-    //       Анимация удара (с задержкой почему то)
-    //private void Player_OnPlayerTakeHit(object sender, System.EventArgs e)
-    //{
-    //    //_animator.SetTrigger(IS_HURT);
-    //}
-    //public void TriggerEndAttackAnimation()
-    //{
-    //    sword.AttackColliderTurnOff();
-    //}
+    private void Player_OnPlayerRespawn(object sender, EventArgs e)
+    {
+        _flashBlink.StartBlinking();
+        //HidingDarkness.SetActive(false);
+    }
+    private IEnumerator PlaySteps()
+    {
+        while (true)
+        {
+            if (Player.Instance.IsRunning() && !Player.Instance.IsShiftRunning())
+            {
+                AudioManager.Instance.PlaySFX(footsteps);
+            }
+            yield return new WaitForSeconds(0.3f);  //Можно настроить
+        }
+    }
+    private IEnumerator PlayRunning()
+    {
+        while (true)
+        {
+            if (Player.Instance.IsShiftRunning())
+            {
+                AudioManager.Instance.PlaySFX(footsteps);
+            }
+            yield return new WaitForSeconds(0.25f);  //Можно настроить
+        }
+    }
+    private IEnumerator PlayAttacking()
+    {
+        if (Player.Instance.IsAttacking())
+        {
+            AudioManager.Instance.PlaySFX(whoosh);
+        }
+        yield return new WaitForSeconds(0.5f);  //Можно настроить
+    }
 }

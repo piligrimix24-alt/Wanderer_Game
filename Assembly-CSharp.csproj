@@ -68,10 +68,10 @@
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\InteractWithObjects\InteractionInOut.cs" />
-    <Compile Include="Assets\Scripts\Slime\Enemy AI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\Weapons\SwordSlashVisual.cs" />
     <Compile Include="Assets\Scripts\Misc\DarkenBreakable.cs" />
+    <Compile Include="Assets\Scripts\UI\SceneTransition.cs" />
     <Compile Include="Assets\Scripts\UI\HealthDisplay.cs" />
     <Compile Include="Assets\Scripts\Weapons\ActiveWeapon.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
@@ -107,22 +107,28 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Objects\VisualBreakableObjects.cs" />
     <Compile Include="Assets\Scripts\Weapons\Sword.cs" />
-    <Compile Include="Assets\Scripts\Slime\EnemyEntity.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemyVisual.cs" />
+    <Compile Include="Assets\Scripts\Misc\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Other\KnockBack.cs" />
     <Compile Include="Assets\Scripts\NavMesgSurfaceManagment.cs" />
     <Compile Include="Assets\Scripts\Objects\BreakableObjects.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Enemy AI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAudio.cs" />
+    <Compile Include="Assets\Scripts\Other\BgMusic.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
-    <Compile Include="Assets\Scripts\Slime\SlimeVisual.cs" />
+    <Compile Include="Assets\Scripts\UI\MusicZone.cs" />
     <Compile Include="Assets\Scripts\InteractWithObjects\InteractionIn.cs" />
+    <Compile Include="Assets\Scripts\InteractWithObjects\CheckPoint.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemyEntity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

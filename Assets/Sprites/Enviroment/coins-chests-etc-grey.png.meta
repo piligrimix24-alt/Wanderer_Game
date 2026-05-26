@@ -295,10 +295,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: star
+      name: star_1
       rect:
         serializedVersion: 2
-        x: 66
+        x: 194
         y: 739
         width: 12
         height: 11
@@ -470,6 +470,226 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: star_2
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a48ea977d1c6b3645a14fbd9ea573538
+      internalID: -647413424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star_3
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9206490bf8a23f49a9aae1f8d720917
+      internalID: 1383452098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star_4
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8ccff51d64f9c429b4fb40a654f640
+      internalID: -1584294628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star_5
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45296bda671326941bc0d11aef0f5126
+      internalID: -2049036927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: star_6
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bff67d1349de7334486c3b283a34411e
+      internalID: 2115839628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coins-chests-etc-grey_4
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 584fb61b93b478644bb136043a60c12c
+      internalID: -1622902753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coins-chests-etc-grey_5
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b8ab6cac37f9d642a8ecd7a2b5958d9
+      internalID: -1172211567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coins-chests-etc-grey_6
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c624f2fa24ed7ca42a3609633929eeb1
+      internalID: 1805471271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coins-chests-etc-grey_7
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c102c11bdc27e04e92216913fd5d47c
+      internalID: -1268199292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coins-chests-etc-grey_8
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 739
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9520a64ce3bb3247bac6c9f845b1d3b
+      internalID: 1572988313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -493,6 +713,11 @@ TextureImporter:
       coins-chests-etc-grey_13: 1457408541
       coins-chests-etc-grey_2: -1959850437
       coins-chests-etc-grey_3: -764463394
+      coins-chests-etc-grey_4: -1622902753
+      coins-chests-etc-grey_5: -1172211567
+      coins-chests-etc-grey_6: 1805471271
+      coins-chests-etc-grey_7: -1268199292
+      coins-chests-etc-grey_8: 1572988313
       gem: -564756160
       heart_1: -56813699
       heart_2: 1003655258
@@ -502,7 +727,12 @@ TextureImporter:
       lock_2: -1872912922
       lock_3: -1879812850
       lock_4: -1077591949
-      star: -1980844553
+      star_1: -1980844553
+      star_2: -647413424
+      star_3: 1383452098
+      star_4: -1584294628
+      star_5: -2049036927
+      star_6: 2115839628
       tile_0240_0: 5241265420835876155
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
